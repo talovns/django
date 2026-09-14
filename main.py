@@ -1,4 +1,4 @@
-
+# пр1
 from datetime import date
 game_title = "Каркассон"
 city = "Москва"
