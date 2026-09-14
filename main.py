@@ -1,8 +1,5 @@
-"""Начальный сценарий проекта «Сервис поиска игроков для настольных игр»."""
 
 from datetime import date
-
-# --- Данные заявки на поиск игроков ---
 game_title = "Каркассон"
 city = "Москва"
 players_needed = 4
@@ -12,7 +9,6 @@ meeting_date = date(2026, 9, 20)
 
 
 def get_request_status(is_open):
-    """Определяет текстовый статус заявки по логическому флагу."""
     if is_open:
         return "Заявка открыта, поиск игроков продолжается"
     else:
@@ -20,7 +16,6 @@ def get_request_status(is_open):
 
 
 def calculate_free_slots(needed, joined):
-    """Вычисляет количество свободных мест на встрече."""
     free_slots = needed - joined
     if free_slots < 0:
         return 0
@@ -28,12 +23,10 @@ def calculate_free_slots(needed, joined):
 
 
 def can_join_meeting(free_slots):
-    """Проверяет, можно ли ещё присоединиться к встрече."""
     return free_slots > 0
 
 
 def format_meeting_info(title, meeting_city, meeting_date, free_slots):
-    """Формирует текстовое описание встречи для участников."""
     date_text = meeting_date.strftime("%d.%m.%Y")
     slots_text = str(free_slots)
     return (
