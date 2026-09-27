@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Каркассон",
+    "min_players": 2,
+    "max_players": 5
+  },
+  {
+    "id": 2,
+    "title": "Колонизаторы",
+    "min_players": 3,
+    "max_players": 4
+  },
+  {
+    "id": 3,
+    "title": "Уно",
+    "min_players": 2,
+    "max_players": 10
+  }
+]

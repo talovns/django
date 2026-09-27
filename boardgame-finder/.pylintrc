@@ -1,0 +1,14 @@
+[MAIN]
+ignore=venv,.venv,__pycache__,.pytest_cache
+
+[MESSAGES CONTROL]
+; Тесты не документируются докстрингами — так же оформлены примеры
+; тестов в методических указаниях к ПР2 (подраздел 6.3.7).
+disable=missing-module-docstring,missing-function-docstring
+
+[FORMAT]
+max-line-length=99
+
+[DESIGN]
+max-args=6
+max-positional-arguments=6

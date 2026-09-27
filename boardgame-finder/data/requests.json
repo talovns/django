@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "game_id": 1,
+    "author_id": 1,
+    "players_needed": 4,
+    "players_joined": 2,
+    "meeting": {
+      "date": "2026-10-10",
+      "city": "Москва",
+      "place": "Антикафе на Арбате"
+    }
+  }
+]
