@@ -1,0 +1,9 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/boardgame-finder/venv/Scripts/python.exe",
+    "python.analysis.extraPaths": ["${workspaceFolder}/boardgame-finder"],
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": ["boardgame-finder/tests"],
+    "pylint.args": ["--rcfile=${workspaceFolder}/boardgame-finder/.pylintrc", "--init-hook=import sys; sys.path.insert(0, 'boardgame-finder')"],
+    "mypy-type-checker.args": ["--explicit-package-bases"],
+    "flake8.args": ["--config=${workspaceFolder}/boardgame-finder/.flake8"]
+}
