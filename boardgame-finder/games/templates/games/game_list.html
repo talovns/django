@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Игры – Поиск игроков{% endblock %}
+
+{% block content %}
+    <h1>Игры</h1>
+    <p>Всего игр в каталоге: {{ games|length }}</p>
+
+    {% for game in games %}
+        {% include "games/includes/game_card.html" %}
+    {% empty %}
+        <p>Игры не найдены.</p>
+    {% endfor %}
+{% endblock %}

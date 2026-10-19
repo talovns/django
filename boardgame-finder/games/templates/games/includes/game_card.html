@@ -1,0 +1,7 @@
+<article class="card game-card mb-3">
+    <div class="card-body">
+        <h2 class="card-title h4">{{ game.title|default:"Без названия" }}</h2>
+        <p class="card-text">Игроков: {{ game.min_players }}–{{ game.max_players }}</p>
+        <a href="{% url 'games:detail' game.id %}" class="btn btn-primary">Подробнее</a>
+    </div>
+</article>

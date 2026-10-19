@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Главная – Поиск игроков{% endblock %}
+
+{% block content %}
+    <h1 class="display-4">Поиск игроков</h1>
+    <p class="lead">Сервис поиска компании для настольных игр.</p>
+    <p>
+        Создайте заявку на игру, назначьте встречу и соберите игроков.
+        Другие участники присоединяются к заявке, пока в ней есть места.
+    </p>
+    <p>Основные разделы:</p>
+    <a href="{% url 'games:list' %}" class="btn btn-primary me-2">Игры</a>
+    <a href="{% url 'gamerequests:list' %}" class="btn btn-secondary">Заявки</a>
+{% endblock %}

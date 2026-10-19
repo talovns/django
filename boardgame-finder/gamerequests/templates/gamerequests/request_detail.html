@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if game_request %}
+        Заявка №{{ game_request.id }} – Поиск игроков
+    {% else %}
+        Заявка не найдена – Поиск игроков
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if game_request %}
+        <div class="card request-card">
+            <div class="card-body">
+                <h1 class="card-title">Заявка №{{ game_request.id }}</h1>
+                <p class="card-text">
+                    <strong>Игра:</strong>
+                    <a href="{% url 'games:detail' game_request.game.id %}">
+                        {{ game_request.game.title }}
+                    </a>
+                </p>
+                <p class="card-text"><strong>Автор:</strong> {{ game_request.author.name }}</p>
+                <p class="card-text">
+                    <strong>Встреча:</strong>
+                    {{ game_request.meeting.meeting_date|date:"d.m.Y" }},
+                    {{ game_request.meeting.city }},
+                    {{ game_request.meeting.place|default:"место уточняется" }}
+                </p>
+                <p class="card-text">
+                    <strong>Свободных мест:</strong>
+                    {{ game_request.free_slots }} из {{ game_request.players_needed }}
+                </p>
+                <p class="card-text">
+                    <strong>Статус:</strong>
+                    {% include "gamerequests/includes/request_status.html" %}
+                </p>
+
+                <h2 class="h5">Участники ({{ players|length }})</h2>
+                <ul class="list-group">
+                    {% for player in players %}
+                        <li class="list-group-item">{{ player.name }} ({{ player.city }})</li>
+                    {% empty %}
+                        <li class="list-group-item">Пока никто не присоединился.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% else %}
+        <h1 class="text-danger">Заявка не найдена</h1>
+        <p>Заявка с указанным идентификатором отсутствует.</p>
+    {% endif %}
+
+    <a href="{% url 'gamerequests:list' %}" class="btn btn-outline-secondary mt-3">
+        ← к списку заявок
+    </a>
+{% endblock %}

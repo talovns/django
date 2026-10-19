@@ -46,3 +46,53 @@ def test_request_detail_shows_linked_objects(client):
     assert "Никита" in content
     assert "Антикафе на Арбате" in content
     assert "Аня" in content
+
+
+def template_names(response):
+    return [template.name for template in response.templates]
+
+
+@pytest.mark.parametrize(
+    ("url", "template"),
+    [
+        ("/", "homepage/index.html"),
+        ("/games/", "games/game_list.html"),
+        ("/games/1/", "games/game_detail.html"),
+        ("/requests/", "gamerequests/request_list.html"),
+        ("/requests/1/", "gamerequests/request_detail.html"),
+    ],
+)
+def test_pages_use_templates(client, url, template):
+    names = template_names(client.get(url))
+    assert template in names
+    assert "base.html" in names
+    assert "includes/navigation.html" in names
+
+
+def test_includes_are_used(client):
+    assert "games/includes/game_card.html" in template_names(client.get("/games/"))
+    names = template_names(client.get("/requests/1/"))
+    assert "gamerequests/includes/request_status.html" in names
+
+
+def test_missing_object_uses_template_message(client):
+    response = client.get("/requests/999/")
+    assert response.status_code == 404
+    assert "Заявка не найдена" in response.content.decode()
+
+
+def test_static_files_are_linked(client):
+    content = client.get("/").content.decode()
+    assert "/static/homepage/css/style.css" in content
+    assert "/static/homepage/js/main.js" in content
+    assert "/static/homepage/img/logo.svg" in content
+
+
+def test_date_filter_formats_meeting_date(client):
+    assert "10.10.2026" in client.get("/requests/").content.decode()
+
+
+def test_page_helper_removed():
+    import homepage.views
+
+    assert not hasattr(homepage.views, "page")

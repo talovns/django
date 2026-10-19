@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if game %}
+        {{ game.title }} – Поиск игроков
+    {% else %}
+        Игра не найдена – Поиск игроков
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if game %}
+        <div class="card game-card">
+            <div class="card-body">
+                <h1 class="card-title">{{ game.title }}</h1>
+                <p class="card-text"><strong>ID:</strong> {{ game.id }}</p>
+                <p class="card-text">
+                    <strong>Игроков:</strong> {{ game.min_players }}–{{ game.max_players }}
+                </p>
+
+                <h2 class="h5">Открытые заявки ({{ open_requests|length }})</h2>
+                <ul class="list-group">
+                    {% for game_request in open_requests %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <a href="{% url 'gamerequests:detail' game_request.id %}">
+                                {{ game_request.meeting.meeting_date|date:"d.m.Y" }},
+                                {{ game_request.meeting.city }}
+                            </a>
+                            {% include "gamerequests/includes/request_status.html" %}
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">Открытых заявок на эту игру нет.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% else %}
+        <h1 class="text-danger">Игра не найдена</h1>
+        <p>Игра с указанным идентификатором отсутствует.</p>
+    {% endif %}
+
+    <a href="{% url 'games:list' %}" class="btn btn-outline-secondary mt-3">
+        ← к списку игр
+    </a>
+{% endblock %}

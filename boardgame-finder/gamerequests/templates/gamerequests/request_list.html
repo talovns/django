@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Заявки – Поиск игроков{% endblock %}
+
+{% block content %}
+    <h1>Заявки</h1>
+    <p>Всего заявок: {{ game_requests|length }}</p>
+
+    <ul class="list-group">
+        {% for game_request in game_requests %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'gamerequests:detail' game_request.id %}">
+                    №{{ game_request.id }}: {{ game_request.game.title }} –
+                    {{ game_request.meeting.meeting_date|date:"d.m.Y" }},
+                    {{ game_request.meeting.city }}
+                </a>
+                {% include "gamerequests/includes/request_status.html" %}
+            </li>
+        {% empty %}
+            <li class="list-group-item">Заявки не найдены.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

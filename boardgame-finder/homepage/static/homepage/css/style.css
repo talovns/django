@@ -1,0 +1,55 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f5f0;
+}
+
+main {
+    flex: 1;
+}
+
+.site-header {
+    background-color: #2f4858;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+.site-logo {
+    width: 48px;
+    height: 48px;
+}
+
+.site-nav .nav-link {
+    color: #f7f5f0;
+    border-radius: 6px;
+}
+
+.site-nav .nav-link:hover,
+.site-nav .nav-link.active {
+    background-color: #86bbd8;
+    color: #2f4858;
+}
+
+.game-card,
+.request-card {
+    border: 1px solid #d9d4c7;
+    border-left: 6px solid #f6ae2d;
+    border-radius: 8px;
+}
+
+.request-status {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.request-status-open {
+    box-shadow: 0 0 0 2px #c8e6c9;
+}
+
+.site-footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    color: #6c757d;
+    border-top: 1px solid #d9d4c7;
+}
