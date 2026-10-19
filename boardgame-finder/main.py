@@ -85,7 +85,12 @@ def handle_create_request(
     if author is None:
         print("Игрок не найден")
         return
-    players_needed = input_int("Сколько всего игроков нужно: ")
+    players_needed = input_int(
+        f"Сколько всего игроков за столом ({game.min_players}-{game.max_players}): "
+    )
+    while not game.supports_players(players_needed):
+        print(f"«{game.title}» рассчитана на {game.min_players}-{game.max_players} игроков")
+        players_needed = input_int("Сколько всего игроков за столом: ")
     meeting = Meeting(
         input_date("Дата встречи (ДД.ММ.ГГГГ): "),
         input("Город: "),
